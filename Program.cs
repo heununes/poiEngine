@@ -6,39 +6,47 @@ using System.Threading.Tasks;
 using System.ServiceModel.Syndication;
 using System.Xml;
 
+
 namespace poiEngine
 {
     class Program
     {
         static void Main(string[] args)
         {
-            String url = "http://www.formacaosaude.com/feed/";
-            String[,] rssData = getRssFeeds(url);
+            String url = "http://www.formacaosaude.com/categoria/formacao/feed/";
+            Feed[] rssData = getRssFeeds(url);
 
-            for (int i=0; i < rssData.GetLength(0); i++)
+            for (int i = 0; i < rssData.GetLength(0); i++)
             {
-                for(int j=0; j < 2; j++)
-                {
-                    Console.WriteLine(rssData[i, j]);
-                    Console.WriteLine("\n");
-                }
-                
+                Console.WriteLine(rssData[i]);
+                Console.WriteLine("\n");
             }
         }
 
-        private static String[,] getRssFeeds(String Channel)
+        private static Feed[] getRssFeeds(String Channel)
         {
-            String[,] tempRssData = new String[100, 3];
+            var tempRssData = new List<Feed>();
             XmlReader reader = XmlReader.Create(Channel);
-            SyndicationFeed feed = SyndicationFeed.Load(reader);
+            SyndicationFeed feedsObject = SyndicationFeed.Load(reader);
             reader.Close();
-            foreach (SyndicationItem item in feed.Items)
-            {
-                String subject = item.Title.Text;
-                String summary = item.Summary.Text;
-            }
+            Feed feed = new Feed();
 
-            return tempRssData;
+            foreach (SyndicationItem item in feedsObject.Items)
+            {
+                int i = 0;
+                feed.Title = item.Title.Text;
+                feed.Link = item.Links[0].Uri.ToString();
+                feed.Content = item.Summary.Text;
+                String[] categories = new String[item.Categories.LongCount()];
+                foreach (SyndicationCategory category in item.Categories)
+                {
+                    categories[i] = category.Name;
+                    i++;
+                }
+                feed.Category = categories;
+                tempRssData.Add(feed);
+            }
+            return tempRssData.ToArray<Feed>();
         }
     }
 }
