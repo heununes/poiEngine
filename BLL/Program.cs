@@ -18,8 +18,13 @@ namespace poiEngine
 
             for (int i = 0; i < rssData.GetLength(0); i++)
             {
-                Console.WriteLine(rssData[i]);
-                Console.WriteLine("\n");
+                Console.WriteLine(rssData[i].Date);
+                Console.WriteLine(rssData[i].Title);
+                Console.WriteLine(rssData[i].Descritpion);
+                Console.WriteLine(rssData[i].Content);
+                Console.WriteLine(rssData[i].Link);
+
+                Console.WriteLine("################################################");
             }
         }
 
