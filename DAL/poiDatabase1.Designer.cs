@@ -32,11 +32,19 @@ namespace poiEngine.DAL {
         
         private siteTypeDataTable tablesiteType;
         
+        private poiCategoriesDataTable tablepoiCategories;
+        
+        private categoriesDataTable tablecategories;
+        
         private global::System.Data.DataRelation relationFK_poiEngine_0_0;
         
         private global::System.Data.DataRelation relationFK_poiEngine_1_0;
         
         private global::System.Data.DataRelation relationFK_enderecosURL_0_0;
+        
+        private global::System.Data.DataRelation relationFK_poiCategories_0_0;
+        
+        private global::System.Data.DataRelation relationFK_poiCategories_1_0;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -77,6 +85,12 @@ namespace poiEngine.DAL {
                 }
                 if ((ds.Tables["siteType"] != null)) {
                     base.Tables.Add(new siteTypeDataTable(ds.Tables["siteType"]));
+                }
+                if ((ds.Tables["poiCategories"] != null)) {
+                    base.Tables.Add(new poiCategoriesDataTable(ds.Tables["poiCategories"]));
+                }
+                if ((ds.Tables["categories"] != null)) {
+                    base.Tables.Add(new categoriesDataTable(ds.Tables["categories"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -133,6 +147,26 @@ namespace poiEngine.DAL {
         public siteTypeDataTable siteType {
             get {
                 return this.tablesiteType;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public poiCategoriesDataTable poiCategories {
+            get {
+                return this.tablepoiCategories;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public categoriesDataTable categories {
+            get {
+                return this.tablecategories;
             }
         }
         
@@ -215,6 +249,12 @@ namespace poiEngine.DAL {
                 if ((ds.Tables["siteType"] != null)) {
                     base.Tables.Add(new siteTypeDataTable(ds.Tables["siteType"]));
                 }
+                if ((ds.Tables["poiCategories"] != null)) {
+                    base.Tables.Add(new poiCategoriesDataTable(ds.Tables["poiCategories"]));
+                }
+                if ((ds.Tables["categories"] != null)) {
+                    base.Tables.Add(new categoriesDataTable(ds.Tables["categories"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -272,9 +312,23 @@ namespace poiEngine.DAL {
                     this.tablesiteType.InitVars();
                 }
             }
+            this.tablepoiCategories = ((poiCategoriesDataTable)(base.Tables["poiCategories"]));
+            if ((initTable == true)) {
+                if ((this.tablepoiCategories != null)) {
+                    this.tablepoiCategories.InitVars();
+                }
+            }
+            this.tablecategories = ((categoriesDataTable)(base.Tables["categories"]));
+            if ((initTable == true)) {
+                if ((this.tablecategories != null)) {
+                    this.tablecategories.InitVars();
+                }
+            }
             this.relationFK_poiEngine_0_0 = this.Relations["FK_poiEngine_0_0"];
             this.relationFK_poiEngine_1_0 = this.Relations["FK_poiEngine_1_0"];
             this.relationFK_enderecosURL_0_0 = this.Relations["FK_enderecosURL_0_0"];
+            this.relationFK_poiCategories_0_0 = this.Relations["FK_poiCategories_0_0"];
+            this.relationFK_poiCategories_1_0 = this.Relations["FK_poiCategories_1_0"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -293,6 +347,10 @@ namespace poiEngine.DAL {
             base.Tables.Add(this.tablepoiEngine);
             this.tablesiteType = new siteTypeDataTable();
             base.Tables.Add(this.tablesiteType);
+            this.tablepoiCategories = new poiCategoriesDataTable();
+            base.Tables.Add(this.tablepoiCategories);
+            this.tablecategories = new categoriesDataTable();
+            base.Tables.Add(this.tablecategories);
             this.relationFK_poiEngine_0_0 = new global::System.Data.DataRelation("FK_poiEngine_0_0", new global::System.Data.DataColumn[] {
                         this.tablepoi.id_poiColumn}, new global::System.Data.DataColumn[] {
                         this.tablepoiEngine.fk_poiColumn}, false);
@@ -305,6 +363,14 @@ namespace poiEngine.DAL {
                         this.tablesiteType.id_siteTypeColumn}, new global::System.Data.DataColumn[] {
                         this.tableenderecosURL.fk_siteTypeColumn}, false);
             this.Relations.Add(this.relationFK_enderecosURL_0_0);
+            this.relationFK_poiCategories_0_0 = new global::System.Data.DataRelation("FK_poiCategories_0_0", new global::System.Data.DataColumn[] {
+                        this.tablepoi.id_poiColumn}, new global::System.Data.DataColumn[] {
+                        this.tablepoiCategories.fk_poiColumn}, false);
+            this.Relations.Add(this.relationFK_poiCategories_0_0);
+            this.relationFK_poiCategories_1_0 = new global::System.Data.DataRelation("FK_poiCategories_1_0", new global::System.Data.DataColumn[] {
+                        this.tablecategories.id_categoriesColumn}, new global::System.Data.DataColumn[] {
+                        this.tablepoiCategories.fk_categoriesColumn}, false);
+            this.Relations.Add(this.relationFK_poiCategories_1_0);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -328,6 +394,18 @@ namespace poiEngine.DAL {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private bool ShouldSerializesiteType() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializepoiCategories() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private bool ShouldSerializecategories() {
             return false;
         }
         
@@ -397,6 +475,12 @@ namespace poiEngine.DAL {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public delegate void siteTypeRowChangeEventHandler(object sender, siteTypeRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void poiCategoriesRowChangeEventHandler(object sender, poiCategoriesRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public delegate void categoriesRowChangeEventHandler(object sender, categoriesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -709,6 +793,10 @@ namespace poiEngine.DAL {
             
             private global::System.Data.DataColumn columndate;
             
+            private global::System.Data.DataColumn columncontent;
+            
+            private global::System.Data.DataColumn columncomments;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public poiDataTable() {
@@ -784,6 +872,22 @@ namespace poiEngine.DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn contentColumn {
+                get {
+                    return this.columncontent;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn commentsColumn {
+                get {
+                    return this.columncomments;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -819,14 +923,16 @@ namespace poiEngine.DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public poiRow AddpoiRow(string title, string description, string url, System.DateTime date) {
+            public poiRow AddpoiRow(string title, string description, string url, System.DateTime date, string content, string comments) {
                 poiRow rowpoiRow = ((poiRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         title,
                         description,
                         url,
-                        date};
+                        date,
+                        content,
+                        comments};
                 rowpoiRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowpoiRow);
                 return rowpoiRow;
@@ -861,6 +967,8 @@ namespace poiEngine.DAL {
                 this.columndescription = base.Columns["description"];
                 this.columnurl = base.Columns["url"];
                 this.columndate = base.Columns["date"];
+                this.columncontent = base.Columns["content"];
+                this.columncomments = base.Columns["comments"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -876,6 +984,10 @@ namespace poiEngine.DAL {
                 base.Columns.Add(this.columnurl);
                 this.columndate = new global::System.Data.DataColumn("date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columndate);
+                this.columncontent = new global::System.Data.DataColumn("content", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncontent);
+                this.columncomments = new global::System.Data.DataColumn("comments", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncomments);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnid_poi}, true));
                 this.columnid_poi.AutoIncrement = true;
@@ -1585,6 +1697,577 @@ namespace poiEngine.DAL {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class poiCategoriesDataTable : global::System.Data.TypedTableBase<poiCategoriesRow> {
+            
+            private global::System.Data.DataColumn columnid_poiCategories;
+            
+            private global::System.Data.DataColumn columnfk_categories;
+            
+            private global::System.Data.DataColumn columnfk_poi;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiCategoriesDataTable() {
+                this.TableName = "poiCategories";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal poiCategoriesDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected poiCategoriesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn id_poiCategoriesColumn {
+                get {
+                    return this.columnid_poiCategories;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fk_categoriesColumn {
+                get {
+                    return this.columnfk_categories;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn fk_poiColumn {
+                get {
+                    return this.columnfk_poi;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiCategoriesRow this[int index] {
+                get {
+                    return ((poiCategoriesRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event poiCategoriesRowChangeEventHandler poiCategoriesRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event poiCategoriesRowChangeEventHandler poiCategoriesRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event poiCategoriesRowChangeEventHandler poiCategoriesRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event poiCategoriesRowChangeEventHandler poiCategoriesRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddpoiCategoriesRow(poiCategoriesRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiCategoriesRow AddpoiCategoriesRow(categoriesRow parentcategoriesRowByFK_poiCategories_1_0, poiRow parentpoiRowByFK_poiCategories_0_0) {
+                poiCategoriesRow rowpoiCategoriesRow = ((poiCategoriesRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        null,
+                        null};
+                if ((parentcategoriesRowByFK_poiCategories_1_0 != null)) {
+                    columnValuesArray[1] = parentcategoriesRowByFK_poiCategories_1_0[0];
+                }
+                if ((parentpoiRowByFK_poiCategories_0_0 != null)) {
+                    columnValuesArray[2] = parentpoiRowByFK_poiCategories_0_0[0];
+                }
+                rowpoiCategoriesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowpoiCategoriesRow);
+                return rowpoiCategoriesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiCategoriesRow FindByid_poiCategories(long id_poiCategories) {
+                return ((poiCategoriesRow)(this.Rows.Find(new object[] {
+                            id_poiCategories})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                poiCategoriesDataTable cln = ((poiCategoriesDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new poiCategoriesDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnid_poiCategories = base.Columns["id_poiCategories"];
+                this.columnfk_categories = base.Columns["fk_categories"];
+                this.columnfk_poi = base.Columns["fk_poi"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnid_poiCategories = new global::System.Data.DataColumn("id_poiCategories", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_poiCategories);
+                this.columnfk_categories = new global::System.Data.DataColumn("fk_categories", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfk_categories);
+                this.columnfk_poi = new global::System.Data.DataColumn("fk_poi", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnfk_poi);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnid_poiCategories}, true));
+                this.columnid_poiCategories.AutoIncrement = true;
+                this.columnid_poiCategories.AutoIncrementSeed = -1;
+                this.columnid_poiCategories.AutoIncrementStep = -1;
+                this.columnid_poiCategories.AllowDBNull = false;
+                this.columnid_poiCategories.Unique = true;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiCategoriesRow NewpoiCategoriesRow() {
+                return ((poiCategoriesRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new poiCategoriesRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(poiCategoriesRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.poiCategoriesRowChanged != null)) {
+                    this.poiCategoriesRowChanged(this, new poiCategoriesRowChangeEvent(((poiCategoriesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.poiCategoriesRowChanging != null)) {
+                    this.poiCategoriesRowChanging(this, new poiCategoriesRowChangeEvent(((poiCategoriesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.poiCategoriesRowDeleted != null)) {
+                    this.poiCategoriesRowDeleted(this, new poiCategoriesRowChangeEvent(((poiCategoriesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.poiCategoriesRowDeleting != null)) {
+                    this.poiCategoriesRowDeleting(this, new poiCategoriesRowChangeEvent(((poiCategoriesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovepoiCategoriesRow(poiCategoriesRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                poiDatabase ds = new poiDatabase();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "poiCategoriesDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class categoriesDataTable : global::System.Data.TypedTableBase<categoriesRow> {
+            
+            private global::System.Data.DataColumn columnid_categories;
+            
+            private global::System.Data.DataColumn columndescription;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public categoriesDataTable() {
+                this.TableName = "categories";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal categoriesDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected categoriesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn id_categoriesColumn {
+                get {
+                    return this.columnid_categories;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn descriptionColumn {
+                get {
+                    return this.columndescription;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public categoriesRow this[int index] {
+                get {
+                    return ((categoriesRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event categoriesRowChangeEventHandler categoriesRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event categoriesRowChangeEventHandler categoriesRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event categoriesRowChangeEventHandler categoriesRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public event categoriesRowChangeEventHandler categoriesRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void AddcategoriesRow(categoriesRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public categoriesRow AddcategoriesRow(string description) {
+                categoriesRow rowcategoriesRow = ((categoriesRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        description};
+                rowcategoriesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowcategoriesRow);
+                return rowcategoriesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public categoriesRow FindByid_categories(long id_categories) {
+                return ((categoriesRow)(this.Rows.Find(new object[] {
+                            id_categories})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                categoriesDataTable cln = ((categoriesDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new categoriesDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal void InitVars() {
+                this.columnid_categories = base.Columns["id_categories"];
+                this.columndescription = base.Columns["description"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            private void InitClass() {
+                this.columnid_categories = new global::System.Data.DataColumn("id_categories", typeof(long), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid_categories);
+                this.columndescription = new global::System.Data.DataColumn("description", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndescription);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnid_categories}, true));
+                this.columnid_categories.AutoIncrement = true;
+                this.columnid_categories.AutoIncrementSeed = -1;
+                this.columnid_categories.AutoIncrementStep = -1;
+                this.columnid_categories.AllowDBNull = false;
+                this.columnid_categories.Unique = true;
+                this.columndescription.MaxLength = 300;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public categoriesRow NewcategoriesRow() {
+                return ((categoriesRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new categoriesRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(categoriesRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.categoriesRowChanged != null)) {
+                    this.categoriesRowChanged(this, new categoriesRowChangeEvent(((categoriesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.categoriesRowChanging != null)) {
+                    this.categoriesRowChanging(this, new categoriesRowChangeEvent(((categoriesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.categoriesRowDeleted != null)) {
+                    this.categoriesRowDeleted(this, new categoriesRowChangeEvent(((categoriesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.categoriesRowDeleting != null)) {
+                    this.categoriesRowDeleting(this, new categoriesRowChangeEvent(((categoriesRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void RemovecategoriesRow(categoriesRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                poiDatabase ds = new poiDatabase();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "categoriesDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class enderecosURLRow : global::System.Data.DataRow {
@@ -1762,6 +2445,38 @@ namespace poiEngine.DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string content {
+                get {
+                    try {
+                        return ((string)(this[this.tablepoi.contentColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'content\' in table \'poi\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepoi.contentColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string comments {
+                get {
+                    try {
+                        return ((string)(this[this.tablepoi.commentsColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'comments\' in table \'poi\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepoi.commentsColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IstitleNull() {
                 return this.IsNull(this.tablepoi.titleColumn);
             }
@@ -1810,12 +2525,47 @@ namespace poiEngine.DAL {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscontentNull() {
+                return this.IsNull(this.tablepoi.contentColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcontentNull() {
+                this[this.tablepoi.contentColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IscommentsNull() {
+                return this.IsNull(this.tablepoi.commentsColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetcommentsNull() {
+                this[this.tablepoi.commentsColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public poiEngineRow[] GetpoiEngineRows() {
                 if ((this.Table.ChildRelations["FK_poiEngine_0_0"] == null)) {
                     return new poiEngineRow[0];
                 }
                 else {
                     return ((poiEngineRow[])(base.GetChildRows(this.Table.ChildRelations["FK_poiEngine_0_0"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiCategoriesRow[] GetpoiCategoriesRows() {
+                if ((this.Table.ChildRelations["FK_poiCategories_0_0"] == null)) {
+                    return new poiCategoriesRow[0];
+                }
+                else {
+                    return ((poiCategoriesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_poiCategories_0_0"])));
                 }
             }
         }
@@ -1973,6 +2723,175 @@ namespace poiEngine.DAL {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class poiCategoriesRow : global::System.Data.DataRow {
+            
+            private poiCategoriesDataTable tablepoiCategories;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal poiCategoriesRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablepoiCategories = ((poiCategoriesDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long id_poiCategories {
+                get {
+                    return ((long)(this[this.tablepoiCategories.id_poiCategoriesColumn]));
+                }
+                set {
+                    this[this.tablepoiCategories.id_poiCategoriesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long fk_categories {
+                get {
+                    try {
+                        return ((long)(this[this.tablepoiCategories.fk_categoriesColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fk_categories\' in table \'poiCategories\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepoiCategories.fk_categoriesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long fk_poi {
+                get {
+                    try {
+                        return ((long)(this[this.tablepoiCategories.fk_poiColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'fk_poi\' in table \'poiCategories\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablepoiCategories.fk_poiColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiRow poiRow {
+                get {
+                    return ((poiRow)(this.GetParentRow(this.Table.ParentRelations["FK_poiCategories_0_0"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_poiCategories_0_0"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public categoriesRow categoriesRow {
+                get {
+                    return ((categoriesRow)(this.GetParentRow(this.Table.ParentRelations["FK_poiCategories_1_0"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["FK_poiCategories_1_0"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isfk_categoriesNull() {
+                return this.IsNull(this.tablepoiCategories.fk_categoriesColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setfk_categoriesNull() {
+                this[this.tablepoiCategories.fk_categoriesColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool Isfk_poiNull() {
+                return this.IsNull(this.tablepoiCategories.fk_poiColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void Setfk_poiNull() {
+                this[this.tablepoiCategories.fk_poiColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class categoriesRow : global::System.Data.DataRow {
+            
+            private categoriesDataTable tablecategories;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            internal categoriesRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablecategories = ((categoriesDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public long id_categories {
+                get {
+                    return ((long)(this[this.tablecategories.id_categoriesColumn]));
+                }
+                set {
+                    this[this.tablecategories.id_categoriesColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string description {
+                get {
+                    try {
+                        return ((string)(this[this.tablecategories.descriptionColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'description\' in table \'categories\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablecategories.descriptionColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsdescriptionNull() {
+                return this.IsNull(this.tablecategories.descriptionColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetdescriptionNull() {
+                this[this.tablecategories.descriptionColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiCategoriesRow[] GetpoiCategoriesRows() {
+                if ((this.Table.ChildRelations["FK_poiCategories_1_0"] == null)) {
+                    return new poiCategoriesRow[0];
+                }
+                else {
+                    return ((poiCategoriesRow[])(base.GetChildRows(this.Table.ChildRelations["FK_poiCategories_1_0"])));
+                }
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -2094,6 +3013,74 @@ namespace poiEngine.DAL {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public siteTypeRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class poiCategoriesRowChangeEvent : global::System.EventArgs {
+            
+            private poiCategoriesRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiCategoriesRowChangeEvent(poiCategoriesRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public poiCategoriesRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public class categoriesRowChangeEvent : global::System.EventArgs {
+            
+            private categoriesRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public categoriesRowChangeEvent(categoriesRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public categoriesRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -3833,6 +4820,885 @@ WHERE        (st.type = @type)";
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class poiCategoriesTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SQLite.SQLiteDataAdapter _adapter;
+        
+        private global::System.Data.SQLite.SQLiteConnection _connection;
+        
+        private global::System.Data.SQLite.SQLiteTransaction _transaction;
+        
+        private global::System.Data.SQLite.SQLiteCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public poiCategoriesTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SQLite.SQLiteDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SQLite.SQLiteConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SQLite.SQLiteCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SQLite.SQLiteTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SQLite.SQLiteCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SQLite.SQLiteDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "poiCategories";
+            tableMapping.ColumnMappings.Add("id_poiCategories", "id_poiCategories");
+            tableMapping.ColumnMappings.Add("fk_categories", "fk_categories");
+            tableMapping.ColumnMappings.Add("fk_poi", "fk_poi");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SQLite.SQLiteCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [main].[sqlite_default_schema].[poiCategories] WHERE (([id_poiCategories] = @Original_id_poiCategories) AND ((@IsNull_fk_categories = 1 AND [fk_categories] IS NULL) OR ([fk_categories] = @Original_fk_categories)) AND ((@IsNull_fk_poi = 1 AND [fk_poi] IS NULL) OR ([fk_poi] = @Original_fk_poi)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            global::System.Data.SQLite.SQLiteParameter param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_id_poiCategories";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "id_poiCategories";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_fk_categories";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "fk_categories";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_fk_categories";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "fk_categories";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_fk_poi";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "fk_poi";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_fk_poi";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "fk_poi";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            this._adapter.InsertCommand = new global::System.Data.SQLite.SQLiteCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [main].[sqlite_default_schema].[poiCategories] ([fk_categories], [fk_" +
+                "poi]) VALUES (@fk_categories, @fk_poi)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@fk_categories";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "fk_categories";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@fk_poi";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "fk_poi";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            this._adapter.UpdateCommand = new global::System.Data.SQLite.SQLiteCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [main].[sqlite_default_schema].[poiCategories] SET [fk_categories] = @fk_categories, [fk_poi] = @fk_poi WHERE (([id_poiCategories] = @Original_id_poiCategories) AND ((@IsNull_fk_categories = 1 AND [fk_categories] IS NULL) OR ([fk_categories] = @Original_fk_categories)) AND ((@IsNull_fk_poi = 1 AND [fk_poi] IS NULL) OR ([fk_poi] = @Original_fk_poi)))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@fk_categories";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "fk_categories";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@fk_poi";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "fk_poi";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_id_poiCategories";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "id_poiCategories";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_fk_categories";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "fk_categories";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_fk_categories";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "fk_categories";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_fk_poi";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "fk_poi";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_fk_poi";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "fk_poi";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SQLite.SQLiteConnection();
+            this._connection.ConnectionString = global::poiEngine.Properties.Settings.Default.poiDatabaseConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SQLite.SQLiteCommand[3];
+            this._commandCollection[0] = new global::System.Data.SQLite.SQLiteCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT [id_poiCategories], [fk_categories], [fk_poi] FROM [poiCategories]";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SQLite.SQLiteCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT [id_poiCategories], [fk_categories], [fk_poi] FROM [poiCategories] WHERE f" +
+                "k_categories = @categoryId";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::System.Data.SQLite.SQLiteParameter param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@categoryId";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.Size = 8;
+            param.SourceColumn = "fk_categories";
+            this._commandCollection[1].Parameters.Add(param);
+            this._commandCollection[2] = new global::System.Data.SQLite.SQLiteCommand();
+            this._commandCollection[2].Connection = this.Connection;
+            this._commandCollection[2].CommandText = "SELECT [id_poiCategories], [fk_categories], [fk_poi] FROM [poiCategories] WHERE f" +
+                "k_poi = @poiId";
+            this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@poiId";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.Size = 8;
+            param.SourceColumn = "fk_poi";
+            this._commandCollection[2].Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(poiDatabase.poiCategoriesDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual poiDatabase.poiCategoriesDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            poiDatabase.poiCategoriesDataTable dataTable = new poiDatabase.poiCategoriesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual poiDatabase.poiCategoriesDataTable GetDataByCategoryId(global::System.Nullable<long> categoryId) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((categoryId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((long)(categoryId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            poiDatabase.poiCategoriesDataTable dataTable = new poiDatabase.poiCategoriesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual poiDatabase.poiCategoriesDataTable GetDataByPoiId(global::System.Nullable<long> poiId) {
+            this.Adapter.SelectCommand = this.CommandCollection[2];
+            if ((poiId.HasValue == true)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((long)(poiId.Value));
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            poiDatabase.poiCategoriesDataTable dataTable = new poiDatabase.poiCategoriesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(poiDatabase.poiCategoriesDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(poiDatabase dataSet) {
+            return this.Adapter.Update(dataSet, "poiCategories");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(long Original_id_poiCategories, global::System.Nullable<long> Original_fk_categories, global::System.Nullable<long> Original_fk_poi) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_id_poiCategories));
+            if ((Original_fk_categories.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((long)(Original_fk_categories.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            if ((Original_fk_poi.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((long)(Original_fk_poi.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(global::System.Nullable<long> fk_categories, global::System.Nullable<long> fk_poi) {
+            if ((fk_categories.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((long)(fk_categories.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((fk_poi.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[1].Value = ((long)(fk_poi.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(global::System.Nullable<long> fk_categories, global::System.Nullable<long> fk_poi, long Original_id_poiCategories, global::System.Nullable<long> Original_fk_categories, global::System.Nullable<long> Original_fk_poi) {
+            if ((fk_categories.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((long)(fk_categories.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            if ((fk_poi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((long)(fk_poi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((long)(Original_id_poiCategories));
+            if ((Original_fk_categories.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((long)(Original_fk_categories.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[4].Value = global::System.DBNull.Value;
+            }
+            if ((Original_fk_poi.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((long)(Original_fk_poi.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[5].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[6].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class categoriesTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SQLite.SQLiteDataAdapter _adapter;
+        
+        private global::System.Data.SQLite.SQLiteConnection _connection;
+        
+        private global::System.Data.SQLite.SQLiteTransaction _transaction;
+        
+        private global::System.Data.SQLite.SQLiteCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public categoriesTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected internal global::System.Data.SQLite.SQLiteDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SQLite.SQLiteConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SQLite.SQLiteCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        internal global::System.Data.SQLite.SQLiteTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        protected global::System.Data.SQLite.SQLiteCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SQLite.SQLiteDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "categories";
+            tableMapping.ColumnMappings.Add("id_categories", "id_categories");
+            tableMapping.ColumnMappings.Add("description", "description");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SQLite.SQLiteCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [main].[sqlite_default_schema].[categories] WHERE (([id_categories] =" +
+                " @Original_id_categories) AND ((@IsNull_description = 1 AND [description] IS NUL" +
+                "L) OR ([description] = @Original_description)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            global::System.Data.SQLite.SQLiteParameter param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_id_categories";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "id_categories";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_description";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "description";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_description";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SourceColumn = "description";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.DeleteCommand.Parameters.Add(param);
+            this._adapter.InsertCommand = new global::System.Data.SQLite.SQLiteCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = "INSERT INTO [main].[sqlite_default_schema].[categories] ([description]) VALUES (@" +
+                "description)";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@description";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SourceColumn = "description";
+            this._adapter.InsertCommand.Parameters.Add(param);
+            this._adapter.UpdateCommand = new global::System.Data.SQLite.SQLiteCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = "UPDATE [main].[sqlite_default_schema].[categories] SET [description] = @descripti" +
+                "on WHERE (([id_categories] = @Original_id_categories) AND ((@IsNull_description " +
+                "= 1 AND [description] IS NULL) OR ([description] = @Original_description)))";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@description";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SourceColumn = "description";
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_id_categories";
+            param.DbType = global::System.Data.DbType.Int64;
+            param.DbType = global::System.Data.DbType.Int64;
+            param.SourceColumn = "id_categories";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@IsNull_description";
+            param.DbType = global::System.Data.DbType.Int32;
+            param.DbType = global::System.Data.DbType.Int32;
+            param.SourceColumn = "description";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            param.SourceColumnNullMapping = true;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+            param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@Original_description";
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.DbType = global::System.Data.DbType.AnsiString;
+            param.SourceColumn = "description";
+            param.SourceVersion = global::System.Data.DataRowVersion.Original;
+            this._adapter.UpdateCommand.Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SQLite.SQLiteConnection();
+            this._connection.ConnectionString = global::poiEngine.Properties.Settings.Default.poiDatabaseConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SQLite.SQLiteCommand[2];
+            this._commandCollection[0] = new global::System.Data.SQLite.SQLiteCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT [id_categories], [description] FROM [categories]";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[1] = new global::System.Data.SQLite.SQLiteCommand();
+            this._commandCollection[1].Connection = this.Connection;
+            this._commandCollection[1].CommandText = "SELECT        id_categories, description\r\nFROM            categories\r\nWHERE      " +
+                "  (description = @description)";
+            this._commandCollection[1].CommandType = global::System.Data.CommandType.Text;
+            global::System.Data.SQLite.SQLiteParameter param = new global::System.Data.SQLite.SQLiteParameter();
+            param.ParameterName = "@description";
+            param.DbType = global::System.Data.DbType.String;
+            param.Size = 300;
+            param.SourceColumn = "description";
+            this._commandCollection[1].Parameters.Add(param);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(poiDatabase.categoriesDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual poiDatabase.categoriesDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            poiDatabase.categoriesDataTable dataTable = new poiDatabase.categoriesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
+        public virtual poiDatabase.categoriesDataTable GetDataByCategoryDescription(string description) {
+            this.Adapter.SelectCommand = this.CommandCollection[1];
+            if ((description == null)) {
+                this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(description));
+            }
+            poiDatabase.categoriesDataTable dataTable = new poiDatabase.categoriesDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(poiDatabase.categoriesDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(poiDatabase dataSet) {
+            return this.Adapter.Update(dataSet, "categories");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(long Original_id_categories, string Original_description) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((long)(Original_id_categories));
+            if ((Original_description == null)) {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[2].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_description));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(string description) {
+            if ((description == null)) {
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[0].Value = ((string)(description));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(string description, long Original_id_categories, string Original_description) {
+            if ((description == null)) {
+                this.Adapter.UpdateCommand.Parameters[0].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(description));
+            }
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((long)(Original_id_categories));
+            if ((Original_description == null)) {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Original_description));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3851,6 +5717,10 @@ WHERE        (st.type = @type)";
         private poiEngineTableAdapter _poiEngineTableAdapter;
         
         private siteTypeTableAdapter _siteTypeTableAdapter;
+        
+        private poiCategoriesTableAdapter _poiCategoriesTableAdapter;
+        
+        private categoriesTableAdapter _categoriesTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -3925,6 +5795,34 @@ WHERE        (st.type = @type)";
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public poiCategoriesTableAdapter poiCategoriesTableAdapter {
+            get {
+                return this._poiCategoriesTableAdapter;
+            }
+            set {
+                this._poiCategoriesTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public categoriesTableAdapter categoriesTableAdapter {
+            get {
+                return this._categoriesTableAdapter;
+            }
+            set {
+                this._categoriesTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -3958,6 +5856,14 @@ WHERE        (st.type = @type)";
                             && (this._siteTypeTableAdapter.Connection != null))) {
                     return this._siteTypeTableAdapter.Connection;
                 }
+                if (((this._poiCategoriesTableAdapter != null) 
+                            && (this._poiCategoriesTableAdapter.Connection != null))) {
+                    return this._poiCategoriesTableAdapter.Connection;
+                }
+                if (((this._categoriesTableAdapter != null) 
+                            && (this._categoriesTableAdapter.Connection != null))) {
+                    return this._categoriesTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -3981,6 +5887,12 @@ WHERE        (st.type = @type)";
                     count = (count + 1);
                 }
                 if ((this._siteTypeTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._poiCategoriesTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._categoriesTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -4021,12 +5933,30 @@ WHERE        (st.type = @type)";
                     allChangedRows.AddRange(updatedRows);
                 }
             }
+            if ((this._categoriesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.categories.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._categoriesTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
             if ((this._poiEngineTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.poiEngine.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._poiEngineTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._poiCategoriesTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.poiCategories.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._poiCategoriesTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -4064,11 +5994,27 @@ WHERE        (st.type = @type)";
                     allAddedRows.AddRange(addedRows);
                 }
             }
+            if ((this._categoriesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.categories.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._categoriesTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
             if ((this._poiEngineTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.poiEngine.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._poiEngineTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._poiCategoriesTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.poiCategories.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._poiCategoriesTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -4082,11 +6028,27 @@ WHERE        (st.type = @type)";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private int UpdateDeletedRows(poiDatabase dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
+            if ((this._poiCategoriesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.poiCategories.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._poiCategoriesTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
             if ((this._poiEngineTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.poiEngine.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._poiEngineTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._categoriesTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.categories.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._categoriesTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -4173,6 +6135,16 @@ WHERE        (st.type = @type)";
                 throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
                         "tring.");
             }
+            if (((this._poiCategoriesTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._poiCategoriesTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
+            if (((this._categoriesTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._categoriesTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("All TableAdapters managed by a TableAdapterManager must use the same connection s" +
+                        "tring.");
+            }
             global::System.Data.IDbConnection workConnection = this.Connection;
             if ((workConnection == null)) {
                 throw new global::System.ApplicationException("TableAdapterManager contains no connection information. Set each TableAdapterMana" +
@@ -4239,6 +6211,24 @@ WHERE        (st.type = @type)";
                     if (this._siteTypeTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._siteTypeTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._siteTypeTableAdapter.Adapter);
+                    }
+                }
+                if ((this._poiCategoriesTableAdapter != null)) {
+                    revertConnections.Add(this._poiCategoriesTableAdapter, this._poiCategoriesTableAdapter.Connection);
+                    this._poiCategoriesTableAdapter.Connection = ((global::System.Data.SQLite.SQLiteConnection)(workConnection));
+                    this._poiCategoriesTableAdapter.Transaction = ((global::System.Data.SQLite.SQLiteTransaction)(workTransaction));
+                    if (this._poiCategoriesTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._poiCategoriesTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._poiCategoriesTableAdapter.Adapter);
+                    }
+                }
+                if ((this._categoriesTableAdapter != null)) {
+                    revertConnections.Add(this._categoriesTableAdapter, this._categoriesTableAdapter.Connection);
+                    this._categoriesTableAdapter.Connection = ((global::System.Data.SQLite.SQLiteConnection)(workConnection));
+                    this._categoriesTableAdapter.Transaction = ((global::System.Data.SQLite.SQLiteTransaction)(workTransaction));
+                    if (this._categoriesTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._categoriesTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._categoriesTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -4314,6 +6304,14 @@ WHERE        (st.type = @type)";
                 if ((this._siteTypeTableAdapter != null)) {
                     this._siteTypeTableAdapter.Connection = ((global::System.Data.SQLite.SQLiteConnection)(revertConnections[this._siteTypeTableAdapter]));
                     this._siteTypeTableAdapter.Transaction = null;
+                }
+                if ((this._poiCategoriesTableAdapter != null)) {
+                    this._poiCategoriesTableAdapter.Connection = ((global::System.Data.SQLite.SQLiteConnection)(revertConnections[this._poiCategoriesTableAdapter]));
+                    this._poiCategoriesTableAdapter.Transaction = null;
+                }
+                if ((this._categoriesTableAdapter != null)) {
+                    this._categoriesTableAdapter.Connection = ((global::System.Data.SQLite.SQLiteConnection)(revertConnections[this._categoriesTableAdapter]));
+                    this._categoriesTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];
