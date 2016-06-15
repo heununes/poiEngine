@@ -23,6 +23,8 @@ namespace poiEngine.BLL.Poi
 
         private string content;
 
+        private string type;
+
         public string Title
         {
             get
@@ -114,6 +116,19 @@ namespace poiEngine.BLL.Poi
             }
         }
 
+        public string Type
+        {
+            get
+            {
+                return type;
+            }
+
+            set
+            {
+                type = value;
+            }
+        }
+
         public Poi()
         {
         }
@@ -158,5 +173,31 @@ namespace poiEngine.BLL.Poi
             this.descritpion = feed.Descritpion;
             this.content = feed.Content;
         }
+
+        public void setPoi(Feed feed)
+        {
+            this.title = feed.Title;
+            this.comments = feed.Comments;
+            this.date = feed.Date;
+            this.url = feed.Link;
+            this.category = feed.Category;
+            this.descritpion = feed.Descritpion;
+            this.content = feed.Content;
+        }
+
+        public bool storePoi (String requestType, Feed feed, long urlId)
+        {
+            this.setPoi(feed);
+
+            DAL.poiSingleton pois = DAL.poiSingleton.Instance;
+            int poiId = pois.storePoi(this.Title, this.Comments, this.Date, this.Url, this.Category, this.Descritpion, this.Content, requestType, urlId);
+
+            // DAL.poiDatabaseTableAdapters.poiTableAdapter
+
+
+            return false;
+        }
     }
 }
+
+

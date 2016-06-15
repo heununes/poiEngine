@@ -78,7 +78,9 @@
     <Compile Include="BLL\Feeds\Feed.cs" />
     <Compile Include="BLL\Feeds\FeedsSingleton.cs" />
     <Compile Include="BLL\Poi\Poi.cs" />
+    <Compile Include="BLL\Poi\ThreadPoi.cs" />
     <Compile Include="BLL\Program.cs" />
+    <Compile Include="DAL\poilSingleton.cs" />
     <Compile Include="DAL\enderecosUrlSingleton.cs" />
     <Compile Include="DAL\poiDatabase.cs">
       <DependentUpon>poiDatabase.xsd</DependentUpon>

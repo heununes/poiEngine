@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Xml;
+using System.Threading;
 
 namespace poiEngine.BLL
 {
@@ -39,6 +40,10 @@ namespace poiEngine.BLL
                 SyndicationFeed feedsObject = SyndicationFeed.Load(reader);
                 reader.Close();
                 Feed feed = new Feed();
+
+                Poi.Poi poi = new Poi.Poi();
+
+
                 foreach (SyndicationItem item in feedsObject.Items)
                 {
                     int i = 0;
@@ -52,9 +57,15 @@ namespace poiEngine.BLL
                         i++;
                     }
                     feed.Category = categories;
+                    Boolean result = poi.storePoi(requestType, feed, row.id_enderecosURL);
+
                     tempRssData.Add(feed);
                 }
             }
+
+            // TODO store poi's in database with threads ??
+            //Poi.ThreadPoi poi = new Poi.ThreadPoi(tempRssData.ToArray<Feed>());
+
             return tempRssData.ToArray<Feed>();
         }
     }

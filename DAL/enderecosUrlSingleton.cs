@@ -35,7 +35,7 @@ namespace poiEngine.DAL
 
         public poiDatabase.enderecosURLDataTable getUrlsById(int id)
         {
-            return this.enderecos.GetDataById(1);
+            return this.enderecos.GetDataById(id);
 
         }
     }
