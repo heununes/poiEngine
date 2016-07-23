@@ -7,25 +7,25 @@ using System.Threading;
 
 namespace poiEngine.BLL
 {
-    class FeedsSingleton
+    class HtmlParserSingleton
     {
-        private static FeedsSingleton instance;
+        private static HtmlParserSingleton instance;
 
-        private FeedsSingleton() { }
+        private HtmlParserSingleton() { }
 
-        public static FeedsSingleton Instance
+        public static HtmlParserSingleton Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new FeedsSingleton();
+                    instance = new HtmlParserSingleton();
                 }
                 return instance;
             }
         }
 
-        private static String requestType = "rss";
+        private static String requestType = "html";
 
         public Feed[] getRssFeeds()
         {

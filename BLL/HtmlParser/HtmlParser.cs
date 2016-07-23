@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace poiEngine
 {
-    class Feed
+    class HtmlParser
     {
         // Field
         private string title;
@@ -25,11 +25,11 @@ namespace poiEngine
 
         private string content;
 
-        public Feed()
+        public HtmlParser()
         {
         }
 
-        public Feed(Feed feed)
+        public HtmlParser(Feed feed)
         {
             title = feed.title;
             link = feed.link;
@@ -41,7 +41,7 @@ namespace poiEngine
             comments = feed.comments;
         }
 
-        public Feed(
+        public HtmlParser(
             string title, 
             string link, 
             string description, 

@@ -17,7 +17,7 @@ namespace poiEngine.BLL.Poi
 
         private string url;
 
-        private string[] category;
+//        private string[] category;
 
         private string descritpion;
 
@@ -77,7 +77,7 @@ namespace poiEngine.BLL.Poi
             }
         }
 
-        public string[] Category
+ /*       public string[] Category
         {
             get
             {
@@ -89,6 +89,7 @@ namespace poiEngine.BLL.Poi
                 category = value;
             }
         }
+        */
 
         public string Descritpion
         {
@@ -135,13 +136,13 @@ namespace poiEngine.BLL.Poi
 
         public Poi(Poi poi)
         {
-            this.title = poi.title;
-            this.comments = poi.comments;
-            this.date = poi.date;
-            this.url = poi.url;
-            this.category = poi.category;
-            this.descritpion = poi.descritpion;
-            this.content = poi.content;
+            title = poi.title;
+            comments = poi.comments;
+            date = poi.date;
+            url = poi.url;
+            //this.category = poi.category;
+            descritpion = poi.descritpion;
+            content = poi.content;
         }
 
         public Poi(
@@ -158,44 +159,48 @@ namespace poiEngine.BLL.Poi
             this.comments = comments;
             this.date = date;
             this.url = url;
-            this.category = category;
-            this.descritpion = description;
+            //this.category = category;
+            descritpion = description;
             this.content = content;
         }
 
         public Poi(Feed feed)
         {
-            this.title = feed.Title;
-            this.comments = feed.Comments;
-            this.date = feed.Date;
-            this.url = feed.Link;
-            this.category = feed.Category;
-            this.descritpion = feed.Descritpion;
-            this.content = feed.Content;
+            title = feed.Title;
+            comments = feed.Comments;
+            date = feed.Date;
+            url = feed.Link;
+            //this.category = feed.Category;
+            descritpion = feed.Descritpion;
+            content = feed.Content;
         }
 
         public void setPoi(Feed feed)
         {
-            this.title = feed.Title;
-            this.comments = feed.Comments;
-            this.date = feed.Date;
-            this.url = feed.Link;
-            this.category = feed.Category;
-            this.descritpion = feed.Descritpion;
-            this.content = feed.Content;
+            title = feed.Title;
+            comments = feed.Comments;
+            date = feed.Date;
+            url = feed.Link;
+            //this.category = this.setCategories(feed.Category);
+            descritpion = feed.Descritpion;
+            content = feed.Content;
         }
 
         public bool storePoi (String requestType, Feed feed, long urlId)
         {
-            this.setPoi(feed);
+            setPoi(feed);
 
             DAL.poiSingleton pois = DAL.poiSingleton.Instance;
-            int poiId = pois.storePoi(this.Title, this.Comments, this.Date, this.Url, this.Category, this.Descritpion, this.Content, requestType, urlId);
+            int poiId = pois.storePoi(Title, Comments, Date, Url, Descritpion, Content, requestType, urlId);
+            
+            if (poiId == 0)
+            {
+                return false;
+            }
 
-            // DAL.poiDatabaseTableAdapters.poiTableAdapter
-
-
-            return false;
+            bool result = pois.storeCategory(feed.Category, poiId);
+            
+            return true;
         }
     }
 }

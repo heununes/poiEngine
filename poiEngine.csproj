@@ -77,6 +77,8 @@
   <ItemGroup>
     <Compile Include="BLL\Feeds\Feed.cs" />
     <Compile Include="BLL\Feeds\FeedsSingleton.cs" />
+    <Compile Include="BLL\HtmlParser\HtmlParser.cs" />
+    <Compile Include="BLL\HtmlParser\HtmlParserSingleton.cs" />
     <Compile Include="BLL\Poi\Poi.cs" />
     <Compile Include="BLL\Poi\ThreadPoi.cs" />
     <Compile Include="BLL\Program.cs" />
@@ -129,9 +131,7 @@
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="BLL\HtmlParser\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="DAL\poiDatabase.dbml.layout">
       <DependentUpon>poiDatabase.dbml</DependentUpon>

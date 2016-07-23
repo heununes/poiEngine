@@ -29,13 +29,13 @@ namespace poiEngine.DAL
 
         public poiDatabase.enderecosURLDataTable getUrlsByType (String type)
         {
-            return this.enderecos.GetDataByType(type);
+            return enderecos.GetDataByType(type);
 
         }
 
         public poiDatabase.enderecosURLDataTable getUrlsById(int id)
         {
-            return this.enderecos.GetDataById(id);
+            return enderecos.GetDataById(id);
 
         }
     }
