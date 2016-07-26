@@ -29,18 +29,6 @@ namespace poiEngine
         {
         }
 
-        public HtmlParser(Feed feed)
-        {
-            title = feed.title;
-            link = feed.link;
-            descritpion = feed.descritpion;
-            content = feed.content;
-            category = feed.category;
-            creator = feed.creator;
-            date = feed.date;
-            comments = feed.comments;
-        }
-
         public HtmlParser(
             string title, 
             string link, 
