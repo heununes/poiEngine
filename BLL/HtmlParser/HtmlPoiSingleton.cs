@@ -4,22 +4,24 @@ using System.Net;
 using System.IO;
 using System.Text;
 using System.Xml.Linq;
+using AngleSharp;
+using AngleSharp.Parser.Html;
 
 namespace poiEngine.BLL
 {
-    class HtmlParserSingleton
+    class HtmlPoiSingleton
     {
-        private static HtmlParserSingleton instance;
+        private static HtmlPoiSingleton instance;
 
-        private HtmlParserSingleton() { }
+        private HtmlPoiSingleton() { }
 
-        public static HtmlParserSingleton Instance
+        public static HtmlPoiSingleton Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = new HtmlParserSingleton();
+                    instance = new HtmlPoiSingleton();
                 }
                 return instance;
             }
@@ -32,7 +34,7 @@ namespace poiEngine.BLL
         {
             DAL.enderecosUrlSingleton enderecos = DAL.enderecosUrlSingleton.Instance;
             DAL.poiDatabase.enderecosURLDataTable rows = enderecos.getUrlsByType(requestType);
-            var tempHtmlData = new List<HtmlParser>();
+            var tempHtmlData = new List<HtmlPoi>();
 
             foreach (DAL.poiDatabase.enderecosURLRow row in rows)
             {
@@ -55,7 +57,10 @@ namespace poiEngine.BLL
                     }
 
                     string data = readStream.ReadToEnd();
+                    var parser = new HtmlParser();
+                    var document = parser.Parse(data);
 
+                    bool result = this.ParseHtmlContents(data);
 
                     response.Close();
                     readStream.Close();
@@ -95,6 +100,31 @@ namespace poiEngine.BLL
 
             // TODO store poi's in database with threads ??
             //Poi.ThreadPoi poi = new Poi.ThreadPoi(tempRssData.ToArray<Feed>());
+
+            return true;
+        }
+        
+
+        public bool ParseHtmlContents(String source)
+        {
+            //Create a (re-usable) parser front-end
+            var parser = new HtmlParser();
+            
+            //Parse source to document
+            var document = parser.Parse(source);
+            //Do something with document like the following
+
+            Console.WriteLine("Serializing the (original) document:");
+            Console.WriteLine(document.DocumentElement.OuterHtml);
+
+            var p = document.CreateElement("p");
+            p.TextContent = "This is another paragraph.";
+
+            Console.WriteLine("Inserting another element in the body ...");
+            document.Body.AppendChild(p);
+
+            Console.WriteLine("Serializing the document again:");
+            Console.WriteLine(document.DocumentElement.OuterHtml);
 
             return true;
         }

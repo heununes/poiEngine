@@ -6,7 +6,7 @@ using System.Xml;
 
 namespace poiEngine
 {
-    class HtmlParser
+    class HtmlPoi
     {
         // Field
         private string title;
@@ -25,11 +25,11 @@ namespace poiEngine
 
         private string content;
 
-        public HtmlParser()
+        public HtmlPoi()
         {
         }
 
-        public HtmlParser(
+        public HtmlPoi(
             string title, 
             string link, 
             string description, 

@@ -15,7 +15,7 @@ namespace poiEngine
             //Feed[] rssData = feeds.getRssFeeds();
 
 
-            BLL.HtmlParserSingleton html = BLL.HtmlParserSingleton.Instance;
+            BLL.HtmlPoiSingleton html = BLL.HtmlPoiSingleton.Instance;
             //HtmlParser[] htmlContent = html.getHtmlContent();
             bool htmlContent = html.getHtmlContent();
 

@@ -81,8 +81,8 @@
   <ItemGroup>
     <Compile Include="BLL\Feeds\Feed.cs" />
     <Compile Include="BLL\Feeds\FeedsSingleton.cs" />
-    <Compile Include="BLL\HtmlParser\HtmlParser.cs" />
-    <Compile Include="BLL\HtmlParser\HtmlParserSingleton.cs" />
+    <Compile Include="BLL\HtmlParser\HtmlPoi.cs" />
+    <Compile Include="BLL\HtmlParser\HtmlPoiSingleton.cs" />
     <Compile Include="BLL\Poi\Poi.cs" />
     <Compile Include="BLL\Poi\ThreadPoi.cs" />
     <Compile Include="BLL\Program.cs" />
