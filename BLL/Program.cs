@@ -10,8 +10,9 @@ namespace poiEngine
     {
         static void Main(string[] args)
         {
-            BLL.FeedsSingleton feeds = BLL.FeedsSingleton.Instance;
-            Feed[] rssData = feeds.getRssFeeds();
+            // TODO RSS mechanism
+            //BLL.FeedsSingleton feeds = BLL.FeedsSingleton.Instance;
+            //Feed[] rssData = feeds.getRssFeeds();
 
 
             BLL.HtmlParserSingleton html = BLL.HtmlParserSingleton.Instance;

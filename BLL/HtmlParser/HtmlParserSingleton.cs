@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.IO;
 using System.Text;
+using System.Xml.Linq;
 
 namespace poiEngine.BLL
 {
@@ -55,7 +56,6 @@ namespace poiEngine.BLL
 
                     string data = readStream.ReadToEnd();
 
-                   
 
                     response.Close();
                     readStream.Close();
