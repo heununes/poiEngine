@@ -37,7 +37,7 @@ namespace poiEngine
             string creator, 
             string comments,
             DateTime date,
-            String[] category
+            string[] category
             )
         {
             this.title = title;

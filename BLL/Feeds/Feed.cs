@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel.Syndication;
-using System.Xml;
 
 namespace poiEngine
 {
     class Feed
     {
-        // Field
+        // Fields
         private string title;
 
         private string link;
@@ -41,20 +37,11 @@ namespace poiEngine
             comments = feed.comments;
         }
 
-        public Feed(
-            string title, 
-            string link, 
-            string description, 
-            string content, 
-            string creator, 
-            string comments,
-            DateTime date,
-            String[] category
-            )
+        public Feed(string title, string link, string description, string content, string creator, string comments,DateTime date, string[] category)
         {
             this.title = title;
             this.link = link;
-            descritpion = description;
+            this.descritpion = description;
             this.content = content;
             this.category = category;
             this.creator = creator;

@@ -35,7 +35,7 @@ namespace poiEngine.DAL
 
         }
 
-        public int storePoi(String title, String comments, DateTime date, String url, String description, String content, String requestType, long urlId)
+        public int storePoi(string title, string comments, DateTime date, string url, string description, string content, string requestType, long urlId)
         {
             if (description == null && content != null)
             {

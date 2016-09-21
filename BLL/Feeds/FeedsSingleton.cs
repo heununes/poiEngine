@@ -25,7 +25,7 @@ namespace poiEngine.BLL
             }
         }
 
-        private static String requestType = "rss";
+        private static string requestType = "rss";
 
         public Feed[] getRssFeeds()
         {
@@ -50,7 +50,7 @@ namespace poiEngine.BLL
                     feed.Title = item.Title.Text;
                     feed.Link = item.Links[0].Uri.AbsoluteUri;
                     feed.Content = item.Summary.Text;
-                    String[] categories = new String[item.Categories.LongCount()];
+                    string[] categories = new string[item.Categories.LongCount()];
                     foreach (SyndicationCategory category in item.Categories)
                     {
                         categories[i] = category.Name;

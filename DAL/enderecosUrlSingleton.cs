@@ -27,7 +27,7 @@ namespace poiEngine.DAL
             }
         }
 
-        public poiDatabase.enderecosURLDataTable getUrlsByType (String type)
+        public poiDatabase.enderecosURLDataTable getUrlsByType (string type)
         {
             return enderecos.GetDataByType(type);
 
@@ -36,7 +36,11 @@ namespace poiEngine.DAL
         public poiDatabase.enderecosURLDataTable getUrlsById(int id)
         {
             return enderecos.GetDataById(id);
+        }
 
+        public void storeUrlsArray(string link, int typeId)
+        {
+            enderecos.InsertEnderecoUrl(link, typeId);
         }
     }
 }

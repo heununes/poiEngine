@@ -32,16 +32,17 @@ CREATE TABLE enderecosURL (
 INSERT INTO enderecosURL (id_enderecosURL, url, fk_siteType) VALUES (1, 'http://www.formacaosaude.com/categoria/formacao/feed/', 2);
 
 -- Table: siteType
-CREATE TABLE siteType (id_siteType INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, type TEXT NOT NULL CHECK (type IN ('rss', 'html')) DEFAULT html);
+CREATE TABLE siteType (id_siteType INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, type TEXT NOT NULL CHECK (type IN ('rss', 'html', 'search_engine')) DEFAULT html);
 INSERT INTO siteType (id_siteType, type) VALUES (1, 'html');
 INSERT INTO siteType (id_siteType, type) VALUES (2, 'rss');
+INSERT INTO siteType (id_siteType, type) VALUES (3, 'search_engine');
 
 -- Table: poiCategories
 CREATE TABLE poiCategories (
     id_poiCategories INTEGER PRIMARY KEY AUTOINCREMENT
                              UNIQUE
                              NOT NULL,
-    fk_category      INTEGER REFERENCES category (id_category),
+    fk_categories      INTEGER REFERENCES categories (id_categories),
     fk_poi           INTEGER REFERENCES poi (id_poi) 
 );
 
@@ -52,6 +53,10 @@ CREATE TABLE categories (
                              NOT NULL,
     description      varchar(300) 
 );
+
+-- Table: searchKeywords
+INSERT INTO searchKeywords (id_searchKeywords, searchQuery) VALUES (1, 'cursos profissionais de medicina alternativa Porto');
+CREATE TABLE searchKeywords (id_searchKeywords INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL UNIQUE, searchQuery TEXT NOT NULL);
 
 COMMIT TRANSACTION;
 PRAGMA foreign_keys = on;

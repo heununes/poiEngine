@@ -150,7 +150,7 @@ namespace poiEngine.BLL.Poi
             string comments,
             DateTime date,
             string url,
-            String[] category,
+            string[] category,
             string description,
             string content
             )
@@ -186,7 +186,7 @@ namespace poiEngine.BLL.Poi
             content = feed.Content;
         }
 
-        public bool storePoi (String requestType, Feed feed, long urlId)
+        public bool storePoi (string requestType, Feed feed, long urlId)
         {
             setPoi(feed);
 

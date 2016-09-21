@@ -10,15 +10,29 @@ namespace poiEngine
     {
         static void Main(string[] args)
         {
-            // TODO RSS mechanism
+            //###############################################################################
+            // FEEDS mechanism
+            //###############################################################################
             //BLL.FeedsSingleton feeds = BLL.FeedsSingleton.Instance;
             //Feed[] rssData = feeds.getRssFeeds();
 
+            //###############################################################################
+            // WEB scrapper
+            //###############################################################################
+            //BLL.HtmlPoiSingleton html = BLL.HtmlPoiSingleton.Instance;
+            //HtmlParserObject[] htmlContent = html.getHtmlContent();
+            //bool htmlContent = html.getHtmlContent();
 
-            BLL.HtmlPoiSingleton html = BLL.HtmlPoiSingleton.Instance;
-            //HtmlParser[] htmlContent = html.getHtmlContent();
-            bool htmlContent = html.getHtmlContent();
+            //###############################################################################
+            // WEB crawler
+            //###############################################################################
+            BLL.WebCrawler crawler = new BLL.WebCrawler();
+            string[] htmlUrls = crawler.getDataFromUrl();
+            
 
+            //###############################################################################
+            // results
+            //###############################################################################
             //for (int i = 0; i < rssData.GetLength(0); i++)
             //{
             //    Console.WriteLine(rssData[i].Date);

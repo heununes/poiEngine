@@ -47,6 +47,14 @@
       <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.4.9.5, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>..\packages\HtmlAgilityPack.1.4.9.5\lib\Net45\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="RestSharp, Version=105.2.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.105.2.3\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -81,11 +89,13 @@
   <ItemGroup>
     <Compile Include="BLL\Feeds\Feed.cs" />
     <Compile Include="BLL\Feeds\FeedsSingleton.cs" />
-    <Compile Include="BLL\HtmlParser\HtmlPoi.cs" />
-    <Compile Include="BLL\HtmlParser\HtmlPoiSingleton.cs" />
+    <Compile Include="BLL\HtmlParserObject\HtmlPoi.cs" />
+    <Compile Include="BLL\HtmlParserObject\HtmlPoiSingleton.cs" />
+    <Compile Include="BLL\HtmlParserObject\HtmlRemoval.cs" />
     <Compile Include="BLL\Poi\Poi.cs" />
     <Compile Include="BLL\Poi\ThreadPoi.cs" />
     <Compile Include="BLL\Program.cs" />
+    <Compile Include="BLL\WebCrawler\WebCrawler.cs" />
     <Compile Include="DAL\poilSingleton.cs" />
     <Compile Include="DAL\enderecosUrlSingleton.cs" />
     <Compile Include="DAL\poiDatabase.cs">
@@ -101,6 +111,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>poiDatabase.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DAL\searchKeyWordsSingleton.cs" />
+    <Compile Include="DAL\siteTypeSingleton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
