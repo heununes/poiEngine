@@ -21,27 +21,32 @@ namespace poiEngine.BLL
 
         public string[] getDataFromUrl()
         {
-            DAL.enderecosUrlSingleton enderecos = DAL.enderecosUrlSingleton.Instance;
-            DAL.poiDatabase.enderecosURLDataTable rows = enderecos.getUrlsByType(requestType);
-
-            DAL.siteTypeSingleton siteType = DAL.siteTypeSingleton.Instance;
-            DAL.poiDatabase.siteTypeDataTable siteTypeRow = siteType.getIdByType("html");
-
+            bool result = getUrlAddresses("html");
             var tempData = new List<string>();
-
-            foreach (DAL.poiDatabase.enderecosURLRow row in rows)
-            {
-                foreach (string link in fetchDataFromWeb(row.url))
-                {
-
-                    enderecos.storeUrlsArray(link, 1);
-                } 
-            }
+            result = getUrlAddresses("rss");
 
             return tempData.ToArray<string>();
         }
 
-        protected string[] fetchDataFromWeb (string pageUrl)
+        protected bool getUrlAddresses(string type)
+        {
+            DAL.enderecosUrlSingleton enderecos = DAL.enderecosUrlSingleton.Instance;
+            DAL.poiDatabase.enderecosURLDataTable rows = enderecos.getUrlsByType(requestType);
+            DAL.siteTypeSingleton siteType = DAL.siteTypeSingleton.Instance;
+            int siteTypeId = (int)siteType.getIdByType(type);
+
+            foreach (DAL.poiDatabase.enderecosURLRow row in rows)
+            {
+                foreach (string link in fetchDataFromWeb(row.url, type))
+                {
+                    enderecos.storeUrlsArray(link, siteTypeId);
+                }
+            }
+
+            return true;
+        }
+
+        protected string[] fetchDataFromWeb (string pageUrl, string type)
         {
 
             DAL.searchKeyWordsSingleton searchKeyWords = DAL.searchKeyWordsSingleton.Instance;
@@ -51,7 +56,19 @@ namespace poiEngine.BLL
 
             foreach (DAL.poiDatabase.searchKeywordsRow row in keyWodsRows)
             {
-                string query = row.searchQuery.Replace(" ", "+");
+                string queryString = row.searchQuery.Replace(" ", "+");
+                string query = "";
+
+                switch (type)
+                {
+                    case "rss":
+                        query = "?q=feed:" + queryString + "&go=Submit&qs=ds&form=QBLH";
+                        break;
+                    case "html":
+                    default:
+                        query = "?q=" + queryString + "&go=Submit&qs=ds&form=QBLH";
+                        break;
+                }
 
                 string requestUrl = pageUrl + "?q=" + query + "&go=Submit&qs=ds&form=QBLH";
 
@@ -92,13 +109,19 @@ namespace poiEngine.BLL
             List<string> hrefTags = new List<string>();
             HtmlDocument doc = new HtmlDocument();
             doc.LoadHtml(source);
-            foreach (HtmlNode node in doc.DocumentNode.SelectNodes(string.Format("//li[contains(@class,'{0}')]", "b_algo")))
+            try
             {
-                string link = node.FirstChild.FirstChild.GetAttributeValue("href", "");
-                if (link != "")
+                foreach (HtmlNode node in doc.DocumentNode.SelectNodes(string.Format("//li[contains(@class,'{0}')]", "b_algo")))
                 {
-                    hrefTags.Add(link);
+                    string link = node.FirstChild.FirstChild.GetAttributeValue("href", "");
+                    if (link != "")
+                    {
+                        hrefTags.Add(link);
+                    }
                 }
+            } catch (Exception e)
+            {
+                hrefTags = new List<string>();
             }
 
             return hrefTags.ToArray();

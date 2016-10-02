@@ -26,10 +26,9 @@ namespace poiEngine.DAL
             }
         }
 
-        public poiDatabase.siteTypeDataTable getIdByType (string type)
+        public int getIdByType (string type)
         {
-            return siteType.GetIdByType(type);
-
+            return (int) siteType.getIdByType(type);
         }
 
     }

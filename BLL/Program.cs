@@ -11,10 +11,16 @@ namespace poiEngine
         static void Main(string[] args)
         {
             //###############################################################################
+            // WEB crawler
+            //###############################################################################
+            BLL.WebCrawler crawler = new BLL.WebCrawler();
+            string[] htmlUrls = crawler.getDataFromUrl();
+
+            //###############################################################################
             // FEEDS mechanism
             //###############################################################################
-            //BLL.FeedsSingleton feeds = BLL.FeedsSingleton.Instance;
-            //Feed[] rssData = feeds.getRssFeeds();
+            BLL.FeedsSingleton feeds = BLL.FeedsSingleton.Instance;
+            Feed[] rssData = feeds.getRssFeeds();
 
             //###############################################################################
             // WEB scrapper
@@ -23,12 +29,6 @@ namespace poiEngine
             //HtmlParserObject[] htmlContent = html.getHtmlContent();
             //bool htmlContent = html.getHtmlContent();
 
-            //###############################################################################
-            // WEB crawler
-            //###############################################################################
-            BLL.WebCrawler crawler = new BLL.WebCrawler();
-            string[] htmlUrls = crawler.getDataFromUrl();
-            
 
             //###############################################################################
             // results
