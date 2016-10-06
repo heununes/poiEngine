@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Syndication;
 using System.Xml;
-using System.Threading;
 
 namespace poiEngine.BLL
 {
@@ -29,13 +28,23 @@ namespace poiEngine.BLL
 
         public Feed[] getRssFeeds()
         {
+            DAL.poiSingleton pois = DAL.poiSingleton.Instance;
+
             DAL.enderecosUrlSingleton enderecos = DAL.enderecosUrlSingleton.Instance;
             DAL.poiDatabase.enderecosURLDataTable rows = enderecos.getUrlsByType(requestType);
+
+            DAL.categorySingleton categoriesSingleton = DAL.categorySingleton.Instance;
+            DAL.poiDatabase.categoriesDataTable categoriesRows = categoriesSingleton.getCategories();
+
+            string[] categoriesArray = categoriesSingleton.getCategoriesToArray(true);
+
+
+
             var tempRssData = new List<Feed>();
 
             foreach (DAL.poiDatabase.enderecosURLRow row in rows)
             {
-                
+
                 XmlReader reader = XmlReader.Create(row.url);
                 SyndicationFeed feedsObject = SyndicationFeed.Load(reader);
                 reader.Close();
@@ -46,24 +55,54 @@ namespace poiEngine.BLL
 
                 foreach (SyndicationItem item in feedsObject.Items)
                 {
-                    int i = 0;
-                    feed.Title = item.Title.Text;
-                    feed.Link = item.Links[0].Uri.AbsoluteUri;
-                    feed.Content = item.Summary.Text;
-                    string[] categories = new string[item.Categories.LongCount()];
-                    foreach (SyndicationCategory category in item.Categories)
+                    string title = "";
+                    try
                     {
-                        categories[i] = category.Name;
-                        i++;
+                        title = item.Title.Text;
                     }
-                    feed.Category = categories;
-                    feed.Date = item.PublishDate.Date;
-
-                    Boolean result = poi.storePoi(requestType, feed, row.id_enderecosURL);
-
-                    if (result == true)
+                    catch (NullReferenceException ex)
                     {
-                        tempRssData.Add(feed);
+                        title = "";
+                    }
+                    if (this.verifyEligibilaty(categoriesArray, title.Trim().ToLower()))
+                    {
+                        int i = 0;
+                        // verificar se o titulo contém alguma key word
+                        feed.Title = title;
+                        if (item.Links[0].Uri.IsAbsoluteUri)
+                        {
+                            feed.Link = item.Links[0].Uri.AbsoluteUri;
+                        }
+                        
+                        feed.Content = item.Summary.Text;
+                        if (item.Categories.LongCount() > 0)
+                        {
+                            string[] categories = new string[item.Categories.LongCount()];
+                            foreach (SyndicationCategory category in item.Categories)
+                            {
+                                categories[i] = category.Name;
+                                i++;
+                            }
+                            feed.Category = categories;
+                        }
+                        else
+                        {
+                            string[] categories = new string[1];
+                            categories[0] = "Generic";
+                            feed.Category = categories;
+                        }
+
+                        //feed.Date = item.PublishDate.Date;
+                        Boolean result = false;
+                        if (pois.alreadyExists(title) == false)
+                        {
+                            result = poi.storePoi(requestType, feed, row.id_enderecosURL);
+                        }
+
+                        if (result == true)
+                        {
+                            tempRssData.Add(feed);
+                        }
                     }
                 }
             }
@@ -72,6 +111,21 @@ namespace poiEngine.BLL
             //Poi.ThreadPoi poi = new Poi.ThreadPoi(tempRssData.ToArray<Feed>());
 
             return tempRssData.ToArray<Feed>();
+        }
+
+        protected bool verifyEligibilaty(string[] categories, string value)
+        {
+            bool result = false;
+            foreach (string category in categories)
+            {
+                if (value.Contains(category))
+                {
+                    result = true;
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }

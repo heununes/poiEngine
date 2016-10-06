@@ -62,7 +62,7 @@ namespace poiEngine.BLL
                 switch (type)
                 {
                     case "rss":
-                        query = "?q=feed:" + queryString + "&go=Submit&qs=ds&form=QBLH";
+                        query = "?q=feed%3A" + queryString + "&go=Submit&qs=ds&form=QBLH";
                         break;
                     case "html":
                     default:
@@ -70,7 +70,7 @@ namespace poiEngine.BLL
                         break;
                 }
 
-                string requestUrl = pageUrl + "?q=" + query + "&go=Submit&qs=ds&form=QBLH";
+                string requestUrl = pageUrl + query;
 
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create(requestUrl);
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
@@ -111,14 +111,19 @@ namespace poiEngine.BLL
             doc.LoadHtml(source);
             try
             {
-                foreach (HtmlNode node in doc.DocumentNode.SelectNodes(string.Format("//li[contains(@class,'{0}')]", "b_algo")))
+                HtmlNodeCollection nodeCollection = doc.DocumentNode.SelectNodes(string.Format("//li[contains(@class,'{0}')]", "b_algo"));
+                if (nodeCollection != null)
                 {
-                    string link = node.FirstChild.FirstChild.GetAttributeValue("href", "");
-                    if (link != "")
+                    foreach (HtmlNode node in nodeCollection)
                     {
-                        hrefTags.Add(link);
+                        string link = node.FirstChild.FirstChild.GetAttributeValue("href", "");
+                        if (link != "")
+                        {
+                            hrefTags.Add(link);
+                        }
                     }
                 }
+                
             } catch (Exception e)
             {
                 hrefTags = new List<string>();

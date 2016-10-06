@@ -7,6 +7,7 @@ using System.Xml.Linq;
 using AngleSharp;
 using AngleSharp.Parser.Html;
 using AngleSharp.Dom;
+using System.Text.RegularExpressions;
 
 namespace poiEngine.BLL
 {
@@ -53,7 +54,8 @@ namespace poiEngine.BLL
             foreach (DAL.poiDatabase.enderecosURLRow row in rows)
             {
 
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(row.url);
+                //HttpWebRequest request = (HttpWebRequest)WebRequest.Create(row.url);
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("http://www.imt.pt/workshops_seminarios.php");
                 HttpWebResponse response = (HttpWebResponse)request.GetResponse();
 
                 if (response.StatusCode == HttpStatusCode.OK)
@@ -76,7 +78,8 @@ namespace poiEngine.BLL
 
                     string body = ExtractHeaderContentFromHtml(data);
 
-                    bool result = this.ParseHtmlContents(data);
+                    //bool result = this.ParseHtmlContents(body);
+                    string content = ExtractHtmlContentFromHtml(body);
 
                     response.Close();
                     readStream.Close();
@@ -92,6 +95,13 @@ namespace poiEngine.BLL
 
         public bool ParseHtmlContents(string source)
         {
+            List<string> keywords = new List<string>
+            {
+                "seminiarios",
+                "seminários",
+                "curso",
+                "master"
+            };
             //Create a (re-usable) parser front-end
             var parser = new HtmlParser();
 
@@ -99,17 +109,29 @@ namespace poiEngine.BLL
             var document = parser.Parse(source);
             //Do something with document like the following
 
-            Console.WriteLine("Serializing the (original) document:");
-            Console.WriteLine(document.DocumentElement.OuterHtml);
+            //Console.WriteLine("Serializing the (original) document:");
+            //Console.WriteLine(document.DocumentElement.OuterHtml);
+            int i = 0;
+            foreach (var node in document.Body.Children)
+            {
+                Console.WriteLine("##################################### " + i + " ########################################################");
+                Console.WriteLine(node.TagName);
+                Console.WriteLine(node.NodeName);
+                Console.WriteLine(node.OuterHtml);
+                Console.WriteLine(node.TextContent);
+                Console.WriteLine("####################################################################################################");
 
-            var p = document.CreateElement("p");
-            p.TextContent = "This is another paragraph.";
+                i++;
+            }
 
-            Console.WriteLine("Inserting another element in the body ...");
-            document.Body.AppendChild(p);
+            //var p = document.CreateElement("p");
+            //p.TextContent = "This is another paragraph.";
 
-            Console.WriteLine("Serializing the document again:");
-            Console.WriteLine(document.DocumentElement.OuterHtml);
+            //Console.WriteLine("Inserting another element in the body ...");
+            //document.Body.AppendChild(p);
+
+            //Console.WriteLine("Serializing the document again:");
+            //Console.WriteLine(document.DocumentElement.OuterHtml);
 
             return true;
         }
@@ -119,6 +141,7 @@ namespace poiEngine.BLL
         {
             List<string> tagsToRemove = new List<string>
             {
+                "doctype",
                 "head",
                 "script",
                 "style"
@@ -150,11 +173,12 @@ namespace poiEngine.BLL
 
         private string ExtractHtmlContentFromHtml(string input)
         {
-            List<string> tagsToRemove = new List<string>
+            List<string> keywords = new List<string>
             {
-                "head",
-                "script",
-                "style",
+                "seminiarios",
+                "seminários",
+                "curso",
+                "master"
             };
 
 
@@ -166,19 +190,14 @@ namespace poiEngine.BLL
             List<string> textNodesValues = new List<string>();
             try
             {
-                foreach (var tagToRemove in tagsToRemove)
-                    tags.AddRange(hpResult.QuerySelectorAll(tagToRemove));
+                //foreach (string keyword in keywords)
+                    tags.AddRange(hpResult.QuerySelectorAll("a"));
 
                 foreach (var tag in tags)
-                    tag.Remove();
-
-
-
-                /*
-                   the following will not work, because text nodes that are not immediate children will not be considered 
-                   textNodesValues = hpResult.All.Where(n => n.NodeType == NodeType.Text).Select(n => n.TextContent).ToList();
-                */
-
+                {
+                    Console.WriteLine(tag.TagName);
+                }
+                    
 
                 var treeWalker = hpResult.CreateTreeWalker(hpResult, FilterSettings.Text);
 
@@ -191,7 +210,6 @@ namespace poiEngine.BLL
             }
             catch (Exception ex)
             {
-                //_errors.Add(string.Format("Error in cleaning html. {0}", ex.Message));
                 Console.WriteLine(string.Format("Error in cleaning html. {0}", ex.Message));
             }
 

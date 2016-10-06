@@ -96,6 +96,7 @@
     <Compile Include="BLL\Poi\ThreadPoi.cs" />
     <Compile Include="BLL\Program.cs" />
     <Compile Include="BLL\WebCrawler\WebCrawler.cs" />
+    <Compile Include="DAL\categorySingleton.cs" />
     <Compile Include="DAL\poilSingleton.cs" />
     <Compile Include="DAL\enderecosUrlSingleton.cs" />
     <Compile Include="DAL\poiDatabase.cs">
